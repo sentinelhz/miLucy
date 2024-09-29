@@ -1,5 +1,5 @@
 # micLucy 
-LUCY Voice Assistant
+#LUCY Voice Assistant
 Language Understanding Companion for You
 
 Table of Contents
@@ -58,7 +58,7 @@ Update and Upgrade the System:
 
 bash
 Copy code
-sudo apt update && sudo apt full-upgrade -y
+'''bash sudo apt update && sudo apt full-upgrade -y'''
 Reboot the Raspberry Pi:
 
 bash
