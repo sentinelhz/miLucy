@@ -18,10 +18,10 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(me
 HOTWORD_MODEL_PATH = 'lucy.ppn'  # Path to your custom wake word model
 ACCESS_KEY = 'hsXTpPSp/b7nytvbN7/NqUct+oqTM82jLvcMt3P1JtK1kyduC8qzcA=='  # Replace with your Picovoice Access Key
 SERVER_URI = 'ws://your_server_address:port'  # Replace with your server's address
-AUDIO_OUTPUT_DEVICE_INDEX = None  # Set to None or the index of your audio output device
+AUDIO_OUTPUT_DEVICE_INDEX = 2  # Set to None or the index of your audio output device
 
 # Load the Vosk model once at the beginning
-vosk_model = Model("models/vosk_model")  # Ensure the model path is correct
+vosk_model = Model("/home/pi/milucy/models/vosk-model")  # Ensure the model path is correct
 
 # Function to play TTS response
 def play_response(text):
@@ -39,7 +39,7 @@ async def capture_speech(pa, sample_rate):
         channels=1,
         format=pyaudio.paInt16,
         input=True,
-        frames_per_buffer=1024
+        frames_per_buffer=2048
     )
 
     frames = []
@@ -49,7 +49,7 @@ async def capture_speech(pa, sample_rate):
 
     try:
         while True:
-            data = stream.read(1024, exception_on_overflow=False)
+            data = stream.read(2048, exception_on_overflow=False)
             frames.append(data)
             rms = audioop.rms(data, 2)  # Measure volume
 
